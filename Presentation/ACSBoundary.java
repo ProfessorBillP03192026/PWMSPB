@@ -6,9 +6,9 @@ public class ACSBoundary
 {
    private ACSInterface ACSConnector;
 
-   private static boolean    DBG = true;
+   private static boolean     DBG = true;
    private static ACSBoundary aB = null;
-   private ACSInterface       aC = null;
+   private ACSInterface        aC = null;
 
    private ACSBoundary()
    {

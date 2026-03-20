@@ -1,7 +1,5 @@
 package Presentation;
 
-import Transport.*;
-
 public class AASConnector implements AASInterface
 {
    private SubsystemEnums dest;

@@ -1,7 +1,5 @@
 package Presentation;
 
-import Transport.*;
-
 public interface ACSInterface
 {
    public void msgReceived();

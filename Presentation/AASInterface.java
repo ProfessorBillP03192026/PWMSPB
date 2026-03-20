@@ -1,7 +1,5 @@
 package Presentation;
 
-import Transport.*;
-
 public interface AASInterface
 {
    public void msgReceived();

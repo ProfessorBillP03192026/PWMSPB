@@ -1,7 +1,5 @@
 package Presentation;
 
-import Transport.*;
-
 public class ACSConnector implements ACSInterface
 {
    private String     userName;

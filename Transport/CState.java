@@ -1,6 +1,6 @@
 package Transport;
 
-import com.sun.jdi.connect.*;
+import Presentation.*;
 
 import java.io.*;
 /*********** Title: CS490 project ***********
@@ -27,7 +27,7 @@ public class CState implements Serializable
     private String   message  =    null;
     private String   username =    null;
     private String   password = null;
-    private SubsystemEnums   role     = SubsystemEnums.TST;
+    private SubsystemEnums role     = SubsystemEnums.TST;
     private int      v        =    0;
     private long     fsize    =    0;
 
