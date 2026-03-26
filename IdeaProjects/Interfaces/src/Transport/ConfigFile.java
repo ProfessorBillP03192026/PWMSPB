@@ -186,7 +186,6 @@ public class ConfigFile
       for (ConfigRecord c : cList)
          if (c.getId() == ID)
             return c.getPort();
-
       return -1;
    }
 
@@ -196,7 +195,6 @@ public class ConfigFile
       for (ConfigRecord c : cList)
          if (c.getId() == ID)
             return c.getIP();
-
       return null;
    }
 }

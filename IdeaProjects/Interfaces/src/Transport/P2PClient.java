@@ -1,5 +1,7 @@
 package Transport;
 
+import Presentation.*;
+
 import java.util.*;
 import javax.swing.*;
 import java.io.File;
@@ -66,8 +68,17 @@ public class P2PClient implements Runnable
 
     public final void run()
     {
+
+
         // Get the command from the user input panel.
         ctl.writeToLogger("Client Started");
+
+        final SubsystemEnums me = rtv.getMySubsys();
+
+        if (me != SubsystemEnums.TST)
+        {
+            cli.serverOnly();
+        }
         CState cs = cli.getUserSelection();
         while(cs!=null)
         {

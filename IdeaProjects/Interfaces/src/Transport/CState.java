@@ -59,7 +59,6 @@ public class CState implements Serializable
         message = M;
     }
 
-
     public final String getHostname()              
     {
         return hostname;

@@ -89,18 +89,48 @@ public class RunTimeVars
        return hostaddr;
     }
 
+    public final String getDASIP()
+    {
+        final String ip = cf.getIP(SubsystemEnums.DAS);
+        return ip;
+    }
+    public final int getDASPort()
+    {
+        final int p = cf.getPort(SubsystemEnums.DAS);
+        return p;
+    }
 
+    public final String getDGSIP()
+    {
+        final String ip = cf.getIP(SubsystemEnums.DGS);
+        return ip;
+    }
+    public final int getDGSPort()
+    {
+        final int p = cf.getPort(SubsystemEnums.DGS);
+        return p;
+    }
 
     public final String getAASIP()
     {   
-       final String ip = cf.getIP(mySubsys);
+       final String ip = cf.getIP(SubsystemEnums.AAS);
        return ip;
     }
-    
+    public final int getAASPort()
+    {
+        final int p = cf.getPort(SubsystemEnums.AAS);
+        return p;
+    }
+
     public final String getACSIP()
-    {   
-//       final String ip = cf.getIP(acsid);
-       return null;
+    {
+        final String ip = cf.getIP(SubsystemEnums.ACS);
+        return ip;
+    }
+    public final int getACSPort()
+    {
+        final int p = cf.getPort(SubsystemEnums.ACS);
+        return p;
     }
 
     public final void setIsGUIInterface( final boolean f )

@@ -35,23 +35,16 @@ public class P2PProject
         final RunTimeVars rtv = RunTimeVars.Instance();
         rtv.setIsGUIInterface        (args.length > 0);
 
-        SubsystemEnums me = rtv.getMySubsys();
+        // Only one thread needed for the client.
+        ExecutorService CandS =
+               Executors.newFixedThreadPool(1);
 
-        if (me == SubsystemEnums.TST)
-        {
-            // Only one thread needed for the client.
-            ExecutorService CandS =
-                  Executors.newFixedThreadPool(1);
+        // Create the client.
+        P2PClient pcm = new P2PClient();
 
-            // Create the client.
-            P2PClient pcm = new P2PClient();
+        // Execute the client as a separate thread.
+        CandS.execute(pcm);
 
-            // Execute the client as a separate thread.
-            CandS.execute(pcm);
-        }
-        else
-            ClientTransactionLogger.Instance();
-        
         // Create the server
         P2PServer psm  =  new P2PServer(myPort, null);
 

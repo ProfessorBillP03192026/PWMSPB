@@ -62,6 +62,13 @@ public class ClientCommandLineInterface
         
         sc = new Scanner(System.in);
     }
+
+    public void serverOnly()
+    {
+       System.out.println("Enter any character to leave");
+       sc.nextLine();
+       System.exit(0);
+    }
     
     public CState getUserSelection()
     {
