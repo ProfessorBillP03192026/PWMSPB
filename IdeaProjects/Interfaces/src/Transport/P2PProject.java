@@ -1,4 +1,5 @@
 package Transport;
+import Presentation.*;
 import Transport.*;
 
 import java.util.concurrent.ExecutorService;
@@ -31,17 +32,25 @@ public class P2PProject
 
         // Anything on the command line means
         // run with GUI.
-        RunTimeVars.Instance().setIsGUIInterface
-                                   (args.length > 0);
-        // Only one thread needed for the client.
-        ExecutorService CandS =
-            Executors.newFixedThreadPool(1);
+        final RunTimeVars rtv = RunTimeVars.Instance();
+        rtv.setIsGUIInterface        (args.length > 0);
 
-        // Create the client.
-        P2PClient pcm = new P2PClient();
+        SubsystemEnums me = rtv.getMySubsys();
 
-        // Execute the client as a separate thread.
-        CandS.execute(pcm);
+        if (me == SubsystemEnums.TST)
+        {
+            // Only one thread needed for the client.
+            ExecutorService CandS =
+                  Executors.newFixedThreadPool(1);
+
+            // Create the client.
+            P2PClient pcm = new P2PClient();
+
+            // Execute the client as a separate thread.
+            CandS.execute(pcm);
+        }
+        else
+            ClientTransactionLogger.Instance();
         
         // Create the server
         P2PServer psm  =  new P2PServer(myPort, null);

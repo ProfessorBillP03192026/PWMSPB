@@ -112,6 +112,8 @@ public class RunTimeVars
         return isguiinterface;
     }
 
-    
-
+    public SubsystemEnums getMySubsys()
+    {
+        return mySubsys;
+    }
 }
