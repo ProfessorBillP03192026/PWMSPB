@@ -39,5 +39,25 @@ public class ACSBoundary
       return a;
    }
 
+   //
+   // Test purposes only!
+   //
+   public void processInputs(ACSConnector aC)
+   {
+      final String uN1 =       aC.getUserName();
+      final String pw1 =       aC.getPassword();
+      final SubsystemRoles role1 = aC.getRole();
+      final String uN2 =                 "Bill";
+      final String pw2 =             "password";
+      final SubsystemRoles role2 =
+            SubsystemRoles.DATAANALYST;
+      if ((uN1 != uN2) ||
+            (pw1 != pw2) ||
+            (role1 != role2)) aC.setNotAuth();
+      else
+         aC.setAuth();
+
+   }
+
 }
 

@@ -32,7 +32,8 @@ public class ClientCommandLineInterface
     private String         S;
 
     private final String hostaddr   = rtv.getMyHostAddr();
-    private final int    portnumber = rtv.getServerPort();
+    private final int    AASPort    = rtv.getAASPort();
+    private final int    ACSPort    = rtv.getAASPort();
     private final String AASIPaddr  = rtv.getAASIP();
     private final String ACSIPaddr  = rtv.getACSIP();
     private final static int MAXVAL = 7;
@@ -55,7 +56,7 @@ public class ClientCommandLineInterface
                                   + "Attempt(alertable)\n" +
                 "3) Audit and Alert Subsystem Crash "
                                          + "(alertable)\n" +
-                "4) Valid authentication\n" +
+                "4) Valid authentication \n" +
                 "5) Invalid authentication\n"  +
                 "6) Data Gatherer Log In\n" +
                 "7) Leave\n\n";
@@ -108,9 +109,12 @@ public class ClientCommandLineInterface
         switch (sel) {
             case 1:
                 cs.setV(0);
-                cs.mid = MessageID.MSG;
+                cs.mid = MessageID.AUTH;
                 cs.setToAddr(AASIPaddr);
-                cs.setMessage("Data Analyst Log In");
+                cs.setPort(AASPort);
+                cs.setDest(SubsystemEnums.AAS);
+                cs.setRole(SubsystemRoles.AUDITOR);
+                cs.setMessage("Auditor Log In");
                 break;
             case 2:
                 cs.setV(1);

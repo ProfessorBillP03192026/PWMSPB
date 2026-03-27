@@ -19,13 +19,8 @@ public enum MessageID implements Serializable
     MSG             ( "Message"                       ),
     AUTH            ( "Authenticate"                  ),
     AUTHRESP        ( "Authenticate Response"         ),
-    DGLOGSIN        ( "Data Gatherer Logs In"         ),
-    REKEYENC        ( "Rekey Encryptor"               ),
-    REKEYDEC        ( "Rekey Decryptor"               ),
-    REKEYEACK       ( "Rekey Encryptor ACK"           ),
-    REKEYDACK       ( "Rekey Decryptor ACK"           ),
-    EPROTO          ( "Entire Protocol"               ),
-    RESTARTENC      ( "Restart Encryption"            );
+    DGLOGSIN        ( "Data Gatherer Logs In"         );
+
     
     private final String message;
 

@@ -7,7 +7,7 @@ public class ACSConnector implements ACSInterface
    private SubsystemRoles role;
    private Boolean        auth;
    private SubsystemEnums dest;
-   private final boolean DBG = true;
+   private final boolean DBG = false;
 
    public ACSConnector()
    {}
@@ -26,7 +26,11 @@ public class ACSConnector implements ACSInterface
    public void msgReceived()
    {
       if (DBG) System.out.println("Msg processing");
-   //   TestProg.processInputs(this);
+      //
+      // Run test.
+      //
+      ACSBoundary aB = ACSBoundary.Instance();
+      aB.processInputs(this);
    }
 
    /**

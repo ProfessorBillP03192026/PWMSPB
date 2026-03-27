@@ -32,7 +32,7 @@ public class CState implements Serializable
     private SubsystemEnums dest =
                       SubsystemEnums.TST;
     private int      v        =        0;
-    private long     fsize    =        0;
+    private int                     port;
 
     public  String[]  files;
     public  String[]  types;
@@ -45,11 +45,16 @@ public class CState implements Serializable
     {
         v = x;
     }
-    public final int  getV()                                
+    public final int  getV()
     {
         return v;
     }
-
+    public final int  getPort()
+    {
+        return port;
+    }
+    public final void setPort( final int x )
+                                      { port = x; }
     public final String getMessage()                
     {
         return message;

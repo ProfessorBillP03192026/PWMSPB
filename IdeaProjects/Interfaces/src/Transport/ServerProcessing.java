@@ -30,9 +30,14 @@ public class ServerProcessing
     public final void processMessage(CState C)
     {
         final MessageID m = C.mid;
-        if ((m == MessageID.MSG)||(m == MessageID.DGLOGSIN))
-           AuditRecordDataStore.Instance().storeAuditRecord(C);
-        else if (m == MessageID.AUTH)
+        if ((m == MessageID.AUTH))
+        {
+            AccessControlPresInterface ap =
+                   AccessControlPresInterface.Instance();
+            AuditRecordDataStore.Instance().storeAuditRecord(C);
+            ap.Authenticate(C);
+        }
+        else if (m == MessageID.MSG)
         {
             C.mid = MessageID.AUTHRESP;
             final boolean a = AccessControlPresInterface.
