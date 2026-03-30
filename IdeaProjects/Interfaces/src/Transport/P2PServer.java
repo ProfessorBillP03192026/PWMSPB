@@ -1,5 +1,7 @@
 package Transport;
 
+import Presentation.*;
+
 import java.util.*;
 import java.net.*;
 import javax.swing.*;
@@ -121,8 +123,8 @@ public class P2PServer implements Runnable
         }
         
         // Process the request.
-        // if (cs.mid == MessageID.MSG)
-        new    ServerProcessing(smservices).
+         if (cs.getRole() != SubsystemRoles.NONE)
+           new    ServerProcessing(smservices).
                                          processMessage(cs);
     }
 }

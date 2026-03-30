@@ -89,6 +89,16 @@ public class RunTimeVars
        return hostaddr;
     }
 
+    public final String getTSTIP()
+    {
+        final String ip = cf.getIP(SubsystemEnums.TST);
+        return ip;
+    }
+    public final int getTSTPort()
+    {
+        final int p = cf.getPort(SubsystemEnums.TST);
+        return p;
+    }
     public final String getDASIP()
     {
         final String ip = cf.getIP(SubsystemEnums.DAS);

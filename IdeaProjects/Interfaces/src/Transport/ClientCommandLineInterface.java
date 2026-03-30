@@ -36,7 +36,7 @@ public class ClientCommandLineInterface
     private final int    ACSPort    = rtv.getAASPort();
     private final String AASIPaddr  = rtv.getAASIP();
     private final String ACSIPaddr  = rtv.getACSIP();
-    private final static int MAXVAL = 7;
+    private final static int MAXVAL = 3;
     
 
 
@@ -51,15 +51,10 @@ public class ClientCommandLineInterface
         prompt =
                 "Host: " + hostaddr +
                 " Node ID: " + m + "\n" +
-                "1) Data Analyst Log In (not alertable)\n" +
-                "2) Data Gathering Subsystem Intrusion "
-                                  + "Attempt(alertable)\n" +
-                "3) Audit and Alert Subsystem Crash "
-                                         + "(alertable)\n" +
-                "4) Valid authentication \n" +
-                "5) Invalid authentication\n"  +
-                "6) Data Gatherer Log In\n" +
-                "7) Leave\n\n";
+                "1) Data Analyst Successful Log In (not alertable)\n" +
+                "2) Data Analyst Unsuccessful Log In "
+                                  + "Attempt (not alertable)\n" +
+                "3) Leave\n\n";
         
         sc = new Scanner(System.in);
     }
@@ -112,48 +107,24 @@ public class ClientCommandLineInterface
                 cs.mid = MessageID.AUTH;
                 cs.setToAddr(AASIPaddr);
                 cs.setPort(AASPort);
-                cs.setDest(SubsystemEnums.AAS);
-                cs.setRole(SubsystemRoles.AUDITOR);
-                cs.setMessage("Auditor Log In");
+                cs.setDest(SubsystemEnums.DAS);
+                cs.setRole(SubsystemRoles.DATAANALYST);
+                cs.setUsername("Bill");
+                cs.setPassword("password");
+                cs.setMessage("Data Analyst Log In");
                 break;
             case 2:
-                cs.setV(1);
-                cs.mid = MessageID.MSG;
-                cs.setToAddr(AASIPaddr);
-                cs.setMessage
-             ("Data Gathering Subsystem Intrusion Attempt");
-                break;
+               cs.setV(0);
+               cs.mid = MessageID.AUTH;
+               cs.setToAddr(AASIPaddr);
+               cs.setPort(AASPort);
+               cs.setDest(SubsystemEnums.DAS);
+               cs.setRole(SubsystemRoles.DATAANALYST);
+               cs.setUsername("Billx");
+               cs.setPassword("password");
+               cs.setMessage("Data Analyst NOT Logged In");
+               break;
             case 3:
-                cs.setV(1);
-                cs.mid = MessageID.MSG;
-                cs.setToAddr(AASIPaddr);
-                cs.setMessage
-                       ("Audit and Alert Subsystem Crash");
-                break;
-            case 4:
-                cs.mid = MessageID.AUTH;
-                cs.setToAddr(ACSIPaddr);
-                cs.setUsername("admin");
-                cs.setPassword("passWord");
-                cs.setRole(SubsystemRoles.DATAANALYST);
-                cs.setMessage("Authentication Request");
-                break;
-            case 5:
-                cs.mid = MessageID.AUTH;
-                cs.setToAddr(ACSIPaddr);
-                cs.setUsername("admin");
-                cs.setPassword("password");
-                cs.setRole(SubsystemRoles.DATAANALYST);
-                cs.setMessage("Authentication Request");
-                break;
-            case 6:
-                cs.setV(0);
-                cs.mid = MessageID.DGLOGSIN;
-                cs.setMessage ("Here is another message you"
-                    + "could write into the AAS Database");
-                cs.setToAddr(AASIPaddr);
-                break;
-            case 7:
                 System.exit(0);
             default:
                 System.out.println("Invalid Selection");

@@ -10,7 +10,7 @@ import java.util.*;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -21,7 +21,7 @@ import java.util.*;
 
 public class SimpleLog
 {
-   private final static DateFormat df = new SimpleDateFormat
+    private final static DateFormat df = new SimpleDateFormat
                                   ("yyyy.MM.dd  hh:mm:ss ");
 
     synchronized public static void write

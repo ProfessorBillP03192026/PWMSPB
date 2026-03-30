@@ -26,7 +26,7 @@ class TestProg
 
       aasB.setValues(cs);
 
-      cs.setUsername("Billx");
+      cs.setUsername("Bill");
       cs.setPassword("password");
       cs.setRole(SubsystemRoles.DATAANALYST);
 

@@ -19,14 +19,6 @@ import Presentation.*;
 
 public class AccessControlPresInterface
 {
-    private static final
-       String pw =           "passWord";
-    
-    private static final 
-       String un =              "admin";
-    
-    private static final 
-       String role =         "SYSADMIN";
    
     private static AccessControlPresInterface ac = null;
     

@@ -9,11 +9,16 @@ public class ACSBoundary
    private static boolean     DBG = true;
    private static ACSBoundary  aB = null;
    private ACSInterface        aC = null;
+   private RunTimeVars        rtv = null;
+   private static CState       cS = null;
 
    private ACSBoundary()
    {
       if (aC == null)
          aC = new ACSConnector();
+      rtv = RunTimeVars.Instance();
+      cS  = new CState();
+      cS.mid = MessageID.AUTH;
    }
 
    public static ACSBoundary Instance()
@@ -42,20 +47,39 @@ public class ACSBoundary
    //
    // Test purposes only!
    //
+   public void processAuthResponse()
+   {
+      final String toAddr = rtv.getTSTIP();
+      final int  toPort = rtv.getTSTPort();
+      final SubsystemRoles role = aC.getRole();
+      aC.setRole(role);
+      ClientServices cs = new ClientServices();
+      cs.Connect(toAddr, toPort);
+      cs.send(cS);
+      cs.Disconnect();
+      cS.mid = MessageID.AUTH;
+   }
    public void processInputs(ACSConnector aC)
    {
-      final String uN1 =       aC.getUserName();
-      final String pw1 =       aC.getPassword();
-      final SubsystemRoles role1 = aC.getRole();
-      final String uN2 =                 "Bill";
-      final String pw2 =             "password";
-      final SubsystemRoles role2 =
-            SubsystemRoles.DATAANALYST;
-      if ((uN1 != uN2) ||
-            (pw1 != pw2) ||
-            (role1 != role2)) aC.setNotAuth();
-      else
-         aC.setAuth();
+      if (cS.mid == MessageID.AUTH) {
+         final String uN1 = aC.getUserName();
+         final String pw1 = aC.getPassword();
+         final SubsystemRoles role1 = aC.getRole();
+         final String uN2 = "Bill";
+         final String pw2 = "password";
+         final SubsystemRoles role2 =
+               SubsystemRoles.DATAANALYST;
+         if ((uN1.equals(uN2) == false) ||
+               (pw1.equals(pw2) == false) ||
+               (role1.equals(role2) == false))
+            aC.setNotAuth();
+         else
+            aC.setAuth();
+         cS.mid = MessageID.AUTHRESP;
+      }
+      else this.processAuthResponse();
+
+
 
    }
 

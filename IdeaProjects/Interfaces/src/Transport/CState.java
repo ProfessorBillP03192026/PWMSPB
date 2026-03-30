@@ -22,8 +22,6 @@ public class CState implements Serializable
 {
     private String   toaddr   =    null;
     private String   hostname =    null;
-    private String   filename =    null;
-    private String   filetype =    null;
     private String   message  =    null;
     private String   username =    null;
     private String   password =    null;
