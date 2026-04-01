@@ -1,6 +1,6 @@
 package Presentation;
 
-import Transport .*;
+import Transport.*;
 
 public class ACSBoundary
 {
@@ -32,6 +32,7 @@ public class ACSBoundary
       final String userName = c.getUsername();
       final String passWord = c.getPassword();
       final SubsystemRoles role = c.getRole();
+      cS = c;
       aC.setUserName(userName);
       aC.setPassword(passWord);
       aC.setRole(role);
