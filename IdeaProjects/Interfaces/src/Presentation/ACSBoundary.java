@@ -32,10 +32,12 @@ public class ACSBoundary
       final String userName = c.getUsername();
       final String passWord = c.getPassword();
       final SubsystemRoles role = c.getRole();
+      final SubsystemEnums ssys = c.getDest();
       cS = c;
       aC.setUserName(userName);
       aC.setPassword(passWord);
       aC.setRole(role);
+      aC.setDest(ssys);
       aC.msgReceived();
    }
 
