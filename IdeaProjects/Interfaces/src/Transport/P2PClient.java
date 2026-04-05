@@ -17,7 +17,7 @@ import java.net.InetAddress;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -27,7 +27,7 @@ import java.net.InetAddress;
 public class P2PClient implements Runnable
 {
 
-    private boolean suspended = true;
+
 
     private ClientTransactionLogger ctl = 
                          ClientTransactionLogger.Instance();
@@ -35,19 +35,13 @@ public class P2PClient implements Runnable
     private RunTimeVars   rtv =     RunTimeVars.Instance();
     private ClientServices cservices;
 
-    //private CState cc = new CState();
-    private CState cs;// = new CState();
 
-    private boolean   isSearch;
-    private boolean isRetrieve;
-    private boolean  isPublish;
     
     private ClientCommandLineInterface cli;
 
     private String  hostName = 	RunTimeVars.Instance().
                                             getMyHostAddr();
-    private String  fileName;
-    private String  fileType;
+
 
     private final static int
        MAINPORT = RunTimeVars.Instance().
@@ -101,38 +95,5 @@ public class P2PClient implements Runnable
        System.exit(0);
     }
 
-    public final void ProcessServerResponse()
-    {
-        // Process the response from the server.
-        if      (isRetrieve) 
-        {
-        }
-        else if (isSearch)   
-        {
-        }
-        else
-        {
-           ctl.writeToLogger("Unknown command");
-           System.exit(-1);
-        }
-    }
-
-    public final void getClientCommand()
-    {
-
-    }
-
-    private void waitForMessage( final long wt )
-    {
-        try
-        {
-            Thread.sleep( wt );
-        }
-        catch (Exception e)
-        {
-            System.err.println( "Wait failed" );
-            System.exit( -1 );
-        }
-    }
 
 }

@@ -12,7 +12,7 @@ import java.io.*;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -36,7 +36,7 @@ public class ServerTransactionLogger
     private static  ServerTransactionLogger stolgger = null;
 
     // The Singleton Design Pattern.
-    public static ServerTransactionLogger Instance()
+    synchronized public static ServerTransactionLogger Instance()
     {
         if ( stolgger == null ) stolgger = 
                               new ServerTransactionLogger();
@@ -62,7 +62,7 @@ public class ServerTransactionLogger
     {
         try
         {
-       localhost = InetAddress.getLocalHost().getHostName();
+            localhost = InetAddress.getLocalHost().getHostName();
         }
         catch (Exception e)
         {

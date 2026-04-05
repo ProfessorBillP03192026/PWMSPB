@@ -14,7 +14,7 @@ import java.io.File;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Ohillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -40,7 +40,7 @@ public class ClientTransactionLogger
     private static ClientTransactionLogger ctolgger = null;
 
     // The Singleton Design Pattern.
-    public static ClientTransactionLogger Instance()
+    synchronized public static ClientTransactionLogger Instance()
     {
         if ( ctolgger == null ) ctolgger = new 
                                 ClientTransactionLogger();

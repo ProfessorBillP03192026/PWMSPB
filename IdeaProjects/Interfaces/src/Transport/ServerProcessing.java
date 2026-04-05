@@ -9,7 +9,7 @@ import Presentation.*;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -43,6 +43,9 @@ public class ServerProcessing
                    AccessControlPresInterface.Instance();
             AuditRecordDataStore.Instance().storeAuditRecord(C);
             final boolean a = ap.Authenticate(C);
+            System.out.print(d);
+            if (a) System.out.println  (" was authorized");
+            else System.out.println(" was NOT authorized");
             final String toAddr = rtv.getTSTIP();
             final int  toPort = rtv.getTSTPort();
             C.setToAddr(toAddr);

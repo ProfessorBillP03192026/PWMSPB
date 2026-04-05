@@ -9,7 +9,7 @@ import javax.swing.*;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 

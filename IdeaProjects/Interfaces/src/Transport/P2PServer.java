@@ -16,7 +16,7 @@ import java.net.InetAddress;
  * 
  * Company:FDU Fall 2018
  * 
- * @author Bill Phillipse ( 214-36-930)
+ * @author Bill Phillips ( 214-36-930)
  * 
  * @version $ Revision log: 1.0
  * 
@@ -34,7 +34,6 @@ public class P2PServer implements Runnable
     private ExecutorService Sservice;
 
     private static int                  NUMTHREADS   =   40;
-    private static boolean              needbaseport = true;
     private int                         port;
 
     public P2PServer(int p, Socket s)
@@ -42,7 +41,7 @@ public class P2PServer implements Runnable
         port   = p;
         socket = s;
         stl    = ServerTransactionLogger.Instance();
-        stl.writeToLogger("Server Created. Port: " 
+        stl.writeToLogger("Server Created. Port: "
                                 + String.format("%d",port));
     }
 

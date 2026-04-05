@@ -62,19 +62,35 @@ public class ACSBoundary
       cs.Disconnect();
       cS.mid = MessageID.AUTH;
    }
+
+   private void dumpVals
+         (String u, String p, SubsystemRoles r, SubsystemEnums e)
+   {
+      System.out.println("\nTest function called with the following:");
+      System.out.println("ACS received:");
+      System.out.println("User Name: " + u);
+      System.out.println("Password: " + p);
+      System.out.println("Role: " + r);
+      System.out.println("Subsys: " +e);
+   }
+
    public void processInputs(ACSConnector aC)
    {
       if (cS.mid == MessageID.AUTH) {
          final String uN1 = aC.getUserName();
          final String pw1 = aC.getPassword();
          final SubsystemRoles role1 = aC.getRole();
+         final SubsystemEnums enum1 = aC.getDest();
+         if (DBG) dumpVals(uN1, pw1, role1, enum1);
          final String uN2 = "Bill";
          final String pw2 = "password";
+         final SubsystemEnums enum2 = SubsystemEnums.DAS;
          final SubsystemRoles role2 =
                SubsystemRoles.DATAANALYST;
          if ((uN1.equals(uN2) == false) ||
                (pw1.equals(pw2) == false) ||
-               (role1.equals(role2) == false))
+               (role1.equals(role2) == false)||
+               (enum1.equals(enum2) == false))
             aC.setNotAuth();
          else
             aC.setAuth();
