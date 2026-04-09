@@ -88,10 +88,14 @@ public class ACSConnector implements ACSInterface
    {
       this.userName = userName;
    }
+
+   @Override
    public boolean getAuth()
    {
       return auth;
    }
+
+   @Override
    public void setDest(SubsystemEnums s)
    {
       dest = s;

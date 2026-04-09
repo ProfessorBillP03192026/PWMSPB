@@ -25,7 +25,7 @@ public class AASBoundary
 
    public AASInterface getConnector()
    {
-      return AASConnector;
+      return aS;
    }
 
    public void sendMsg()
@@ -33,13 +33,24 @@ public class AASBoundary
       final String sm = aS.getMsg();
       final boolean v = aS.getAlertable();
       final int vi = v? 1 : 0;
-      cS.mid = MessageID.AUTH;
+      cS.mid = MessageID.MSG;
       cS.setMessage(sm);
       cS.setV(vi);
       String toIP = rtv.getAASIP();
-      cSv.Connect(toIP, rtv.getServerPort());
+      final int p = rtv.getAASPort();
+      cS.setToAddr(toIP);
+      cS.setPort(p);
+      cS.setHostname(toIP);
+      cSv = new ClientServices();
+      cSv.Connect(toIP, p);
       cSv.send(cS);
       cSv.Disconnect();
+
+      //          C.setMessage(msg);
+      //          C.mid = MessageID.MSG;
+      //          C.setToAddr(toAddr);
+      //          C.setPort(toPort);
+      //         sP.sendRMsg(cS, new ClientServices());
    }
 
 }

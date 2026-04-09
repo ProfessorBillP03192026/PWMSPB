@@ -31,7 +31,7 @@ public class AccessControlPresInterface
     private AccessControlPresInterface()
     {
     }
-    
+
     public boolean Authenticate(CState cs)
     {
        String s = cs.getMessage();

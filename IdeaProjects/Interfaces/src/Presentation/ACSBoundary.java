@@ -48,7 +48,8 @@ public class ACSBoundary
    }
 
    //
-   // Test purposes only!
+   // Test purposes only! You should call
+   // your function instead.
    //
    public void processAuthResponse()
    {
@@ -76,7 +77,17 @@ public class ACSBoundary
 
    public void processInputs(ACSConnector aC)
    {
-      if (cS.mid == MessageID.AUTH) {
+      if (cS.mid == MessageID.MSG)
+      {
+         System.out.println("Audit Message Received: ");
+         final String s = cS.getMessage();
+         System.out.println(s);
+         final int a = cS.getV();
+         if (a != 0)
+            System.out.println("ALERT");
+      }
+      else if (cS.mid == MessageID.AUTH)
+      {
          final String uN1 = aC.getUserName();
          final String pw1 = aC.getPassword();
          final SubsystemRoles role1 = aC.getRole();
@@ -87,7 +98,7 @@ public class ACSBoundary
          final SubsystemEnums enum2 = SubsystemEnums.DAS;
          final SubsystemRoles role2 =
                SubsystemRoles.DATAANALYST;
-         if ((uN1.equals(uN2) == false) ||
+         if   ((uN1.equals(uN2) == false) ||
                (pw1.equals(pw2) == false) ||
                (role1.equals(role2) == false)||
                (enum1.equals(enum2) == false))
