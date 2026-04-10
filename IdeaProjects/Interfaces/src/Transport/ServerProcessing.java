@@ -39,7 +39,8 @@ public class ServerProcessing
             final String msg = C.getMessage();
             System.out.println(msg);
         }
-        else if ((m == MessageID.AUTH)) {
+        else if ((m == MessageID.AUTH))
+        {
             SubsystemEnums se = C.getDest();
             String d = se.toString();
             System.out.print(d);
@@ -58,26 +59,6 @@ public class ServerProcessing
             else C.setV(0);
             sendRMsg(C, new ClientServices());
 
-            AASInterface aA =
-                  AASBoundary.Instance().getConnector();
-
-            String msg = "Audit Message";
-            if (a) {
-                msg += " Authorized";
-            } else {
-                msg += " Not Authorized";
-                aA.setAlertable();
-            }
-            aA.setMsg(msg);
-            //
-            // ToDo -- FIX
-    //        aA.sendMsg();
-
-            C.setMessage(msg);
-            C.mid = MessageID.MSG;
-            C.setToAddr(toAddr);
-            C.setPort(toPort);
-            sendRMsg(C, new ClientServices());
         }
         else if (m == MessageID.AUTHRESP)
         {

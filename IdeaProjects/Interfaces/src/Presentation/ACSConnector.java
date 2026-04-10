@@ -8,6 +8,7 @@ public class ACSConnector implements ACSInterface
    private Boolean        auth;
    private SubsystemEnums dest;
    private final boolean DBG = false;
+   private ACSBoundary aB = null;
 
    public ACSConnector()
    {}
@@ -29,7 +30,7 @@ public class ACSConnector implements ACSInterface
       //
       // Run test.
       //
-      ACSBoundary aB = ACSBoundary.Instance();
+      if (aB == null) aB = ACSBoundary.Instance();
       aB.processInputs(this);
    }
 

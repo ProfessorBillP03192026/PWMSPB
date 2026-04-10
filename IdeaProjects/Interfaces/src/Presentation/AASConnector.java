@@ -5,14 +5,14 @@ public class AASConnector implements AASInterface
    private SubsystemEnums dest;
    private String           ms;
    private boolean           v;
-
+   AASBoundary aasb = null;
    @Override
    public void msgReceived(){}
 
    @Override
    public void sendMsg()
    {
-      AASBoundary aasb = AASBoundary.Instance();
+      if(aasb == null) aasb = AASBoundary.Instance();
       aasb.sendMsg();
    }
 

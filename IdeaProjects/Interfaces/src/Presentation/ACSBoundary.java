@@ -11,11 +11,13 @@ public class ACSBoundary
    private ACSInterface        aC = null;
    private RunTimeVars        rtv = null;
    private static CState       cS = null;
+   private static AASInterface aS = null;
 
    private ACSBoundary()
    {
       if (aC == null)
          aC = new ACSConnector();
+      aS = AASBoundary.Instance().getConnector();
       rtv = RunTimeVars.Instance();
       cS  = new CState();
       cS.mid = MessageID.AUTH;
@@ -47,22 +49,6 @@ public class ACSBoundary
       return a;
    }
 
-   //
-   // Test purposes only! You should call
-   // your function instead.
-   //
-   public void processAuthResponse()
-   {
-      final String toAddr = rtv.getTSTIP();
-      final int  toPort = rtv.getTSTPort();
-      final SubsystemRoles role = aC.getRole();
-      aC.setRole(role);
-      ClientServices cs = new ClientServices();
-      cs.Connect(toAddr, toPort);
-      cs.send(cS);
-      cs.Disconnect();
-      cS.mid = MessageID.AUTH;
-   }
 
    private void dumpVals
          (String u, String p, SubsystemRoles r, SubsystemEnums e)
@@ -77,17 +63,9 @@ public class ACSBoundary
 
    public void processInputs(ACSConnector aC)
    {
-      if (cS.mid == MessageID.MSG)
+      if (cS.mid == MessageID.AUTH)
       {
-         System.out.println("Audit Message Received: ");
-         final String s = cS.getMessage();
-         System.out.println(s);
-         final int a = cS.getV();
-         if (a != 0)
-            System.out.println("ALERT");
-      }
-      else if (cS.mid == MessageID.AUTH)
-      {
+
          final String uN1 = aC.getUserName();
          final String pw1 = aC.getPassword();
          final SubsystemRoles role1 = aC.getRole();
@@ -102,12 +80,36 @@ public class ACSBoundary
                (pw1.equals(pw2) == false) ||
                (role1.equals(role2) == false)||
                (enum1.equals(enum2) == false))
+         {
             aC.setNotAuth();
+            aS.setMsg("Actor " + role1 + "NOT Authorized");
+            aS.setAlertable();
+         }
          else
+         {
             aC.setAuth();
+            aS.setMsg("Actor " + role1 + " Authorized");
+         }
+
          cS.mid = MessageID.AUTHRESP;
+         aS.sendMsg();
+
+
+
+      //   AASInterface aA =
+      //         AASBoundary.Instance().getConnector();
+      //   String sA = "Audit Message ";
+      //   if (aC.getAuth()) sA += " ALERT!";
+      //   aA.setMsg(sA);
+      //   aA.sendMsg();
+
+      //          cS.setMessage(msg);
+      //          cS.mid = MessageID.MSG;
+      //          cS.setToAddr(toAddr);
+      //          cS.setPort(toPort);
+      //          sendRMsg(cS, new ClientServices());
       }
-      else this.processAuthResponse();
+
 
 
 
