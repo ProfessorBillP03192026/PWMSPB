@@ -82,7 +82,7 @@ public class ACSBoundary
                (enum1.equals(enum2) == false))
          {
             aC.setNotAuth();
-            aS.setMsg("Actor " + role1 + "NOT Authorized");
+            aS.setMsg("Actor " + role1 + " NOT Authorized");
             aS.setAlertable();
          }
          else

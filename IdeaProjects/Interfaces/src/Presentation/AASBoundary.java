@@ -36,9 +36,9 @@ public class AASBoundary
          System.out.println("No Audit Message Sent!");
       }
       final boolean v = aS.getAlertable();
-      System.out.println("Audit Message Sent:");
+      System.out.print("\nAudit Message Sent: ");
       System.out.println(sm);
-      if (v) System.out.println("ALERT SET");
+      if (v) System.out.println("ALERT SET\n");
 
    }
 
@@ -60,13 +60,6 @@ public class AASBoundary
       cSv.send(cS);
       cSv.Disconnect();
 
-
-
-      //          C.setMessage(msg);
-      //          C.mid = MessageID.MSG;
-      //          C.setToAddr(toAddr);
-      //          C.setPort(toPort);
-      //         sP.sendRMsg(cS, new ClientServices());
    }
 
 }

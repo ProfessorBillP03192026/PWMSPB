@@ -24,19 +24,13 @@ public class ClientCommandLineInterface
 {
     private final RunTimeVars rtv = RunTimeVars.Instance();
 
-    private int    panelselection =    0;
-
-    private String  filename;
-    private String  filetype;
-    private String sHostname;
-    private String         S;
 
     private final String hostaddr   = rtv.getMyHostAddr();
     private final int    AASPort    = rtv.getAASPort();
     private final int    ACSPort    = rtv.getAASPort();
     private final String AASIPaddr  = rtv.getAASIP();
     private final String ACSIPaddr  = rtv.getACSIP();
-    private final static int MAXVAL = 3;
+    private final static int MAXVAL = 9;
     
 
 
@@ -53,8 +47,17 @@ public class ClientCommandLineInterface
                 " Node ID: " + m + "\n" +
                 "1) Data Analyst Successful Log In (not alertable)\n" +
                 "2) Data Analyst Unsuccessful Log In "
-                                  + "Attempt (not alertable)\n" +
-                "3) Leave\n\n";
+                                  + "Attempt (alertable)\n" +
+                "3) Data Gatherer Successful Log In (not alertable)\n" +
+                "4) Data Gatherer Unsuccessful Log In "
+                      + "Attempt (alertable)\n" +
+                "5) Data Gatherer Successful Log In (not alertable)\n" +
+                "6) Data Gatherer Unsuccessful Log In "
+                      + "Attempt (alertable)\n" +
+                "7) Data Gatherer Successful Log In (not alertable)\n" +
+                "8) Data Gatherer Unsuccessful Log In "
+                      + "Attempt (alertable)\n" +
+                "9) Leave\n\n";
         
         sc = new Scanner(System.in);
     }
@@ -97,9 +100,7 @@ public class ClientCommandLineInterface
 
        }
 
-        //
-         // TODO Figure out return mechanism
-        //
+
        final String dest = rtv.getMyHostAddr();
        cs.setHostname(dest);
        
@@ -126,7 +127,73 @@ public class ClientCommandLineInterface
                cs.setPassword("password");
                cs.setMessage("Data Analyst NOT Logged In");
                break;
-            case 3:
+           case 3:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.DGS);
+              cs.setRole(SubsystemRoles.DATAGATHERER);
+              cs.setUsername("Joe");
+              cs.setPassword("JoePass");
+              cs.setMessage("Data Gatherer Log In");
+              break;
+           case 4:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.DGS);
+              cs.setRole(SubsystemRoles.DATAGATHERER);
+              cs.setUsername("Joe");
+              cs.setPassword("JoePassXYZ");
+              cs.setMessage("Data Gatherer NOT Logged In");
+              break;
+           case 5:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.AAS);
+              cs.setRole(SubsystemRoles.AUDITOR);
+              cs.setUsername("Mary");
+              cs.setPassword("MaryPass");
+              cs.setMessage("Auditor Log In");
+              break;
+           case 6:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.DAS);
+              cs.setRole(SubsystemRoles.AUDITOR);
+              cs.setUsername("Mary");
+              cs.setPassword("MaryPass");
+              cs.setMessage("Auditor NOT Logged In");
+              break;
+           case 7:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.AAS);
+              cs.setRole(SubsystemRoles.WATCHMAN);
+              cs.setUsername("Amy");
+              cs.setPassword("AmyPass");
+              cs.setMessage("Watchman Log In");
+              break;
+           case 8:
+              cs.setV(0);
+              cs.mid = MessageID.AUTH;
+              cs.setToAddr(ACSIPaddr);
+              cs.setPort(ACSPort);
+              cs.setDest(SubsystemEnums.DAS);
+              cs.setRole(SubsystemRoles.SYSTEMADMIN);
+              cs.setUsername("Amy");
+              cs.setPassword("AmyPass");
+              cs.setMessage("Watchman NOT Logged In");
+              break;
+           case 9:
                 System.exit(0);
             default:
                 System.out.println("Invalid Selection");
