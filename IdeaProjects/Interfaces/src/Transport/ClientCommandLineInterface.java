@@ -44,7 +44,7 @@ public class ClientCommandLineInterface
 
         prompt =
                 "Host: " + hostaddr +
-                " Node ID: " + m + "\n" +
+                " Port: " + m + "\n" +
                 "1) Data Analyst Successful Log In (not alertable)\n" +
                 "2) Data Analyst Unsuccessful Log In "
                                   + "Attempt (alertable)\n" +
