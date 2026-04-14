@@ -94,20 +94,6 @@ public class ACSBoundary
          cS.mid = MessageID.AUTHRESP;
          aS.sendMsg();
 
-
-
-      //   AASInterface aA =
-      //         AASBoundary.Instance().getConnector();
-      //   String sA = "Audit Message ";
-      //   if (aC.getAuth()) sA += " ALERT!";
-      //   aA.setMsg(sA);
-      //   aA.sendMsg();
-
-      //          cS.setMessage(msg);
-      //          cS.mid = MessageID.MSG;
-      //          cS.setToAddr(toAddr);
-      //          cS.setPort(toPort);
-      //          sendRMsg(cS, new ClientServices());
       }
 
 

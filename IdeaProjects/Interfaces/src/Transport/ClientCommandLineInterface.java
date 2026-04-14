@@ -51,11 +51,11 @@ public class ClientCommandLineInterface
                 "3) Data Gatherer Successful Log In (not alertable)\n" +
                 "4) Data Gatherer Unsuccessful Log In "
                       + "Attempt (alertable)\n" +
-                "5) Data Gatherer Successful Log In (not alertable)\n" +
-                "6) Data Gatherer Unsuccessful Log In "
+                "5) Auditor Successful Log In (not alertable)\n" +
+                "6) Auditor Unsuccessful Log In "
                       + "Attempt (alertable)\n" +
-                "7) Data Gatherer Successful Log In (not alertable)\n" +
-                "8) Data Gatherer Unsuccessful Log In "
+                "7) Watchman Successful Log In (not alertable)\n" +
+                "8) Watchman Unsuccessful Log In "
                       + "Attempt (alertable)\n" +
                 "9) Leave\n\n";
         
