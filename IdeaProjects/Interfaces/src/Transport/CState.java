@@ -41,7 +41,7 @@ public class CState implements Serializable
 
     public final void setV( final int x )                     
     {
-        v = x;
+      v = x;
     }
     public final int  getV()
     {

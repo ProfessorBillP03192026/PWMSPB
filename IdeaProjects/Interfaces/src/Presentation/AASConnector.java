@@ -3,8 +3,8 @@ package Presentation;
 public class AASConnector implements AASInterface
 {
    private SubsystemEnums dest;
-   private String           ms;
-   private boolean           v;
+   private static String           ms;
+   private static boolean           v;
    AASBoundary aasb = null;
    @Override
    public void msgReceived(){}

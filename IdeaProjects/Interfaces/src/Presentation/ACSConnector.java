@@ -1,4 +1,6 @@
 package Presentation;
+import Application.*;
+import Transport.*;
 
 public class ACSConnector implements ACSInterface
 {
@@ -7,11 +9,12 @@ public class ACSConnector implements ACSInterface
    private SubsystemRoles role;
    private Boolean        auth;
    private SubsystemEnums dest;
-   private final boolean DBG = false;
-   private ACSBoundary aB = null;
+   private final boolean DBG = true;
+   private static Authenticate aS = new Authenticate();
 
    public ACSConnector()
-   {}
+   {
+   }
 
    /**
     *  When an authorization
@@ -27,11 +30,10 @@ public class ACSConnector implements ACSInterface
    public void msgReceived()
    {
       if (DBG) System.out.println("Msg processing");
-      //
-      // Run test.
-      //
-      if (aB == null) aB = ACSBoundary.Instance();
-      aB.processInputs(this);
+
+      aS.processInputs(this);
+
+
    }
 
    /**

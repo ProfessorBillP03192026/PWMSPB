@@ -40,6 +40,7 @@ public class ACSBoundary
       aC.setPassword(passWord);
       aC.setRole(role);
       aC.setDest(ssys);
+      setResp();
       aC.msgReceived();
    }
 
@@ -47,6 +48,11 @@ public class ACSBoundary
    {
       boolean a = aC.getAuth();
       return a;
+   }
+
+   private void setResp()
+   {
+      cS.mid = MessageID.AUTHRESP;
    }
 
 
