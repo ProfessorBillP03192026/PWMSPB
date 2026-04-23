@@ -74,8 +74,10 @@ public class AccessControl
       while (true)
       {
          int opt = getUserSelection();
-         if (opt == 1){uS.addOrDeleteUser();}
-         else if (opt == 2){}
+         if (opt == 1)
+            uS.addOrDeleteUser();
+         else if (opt == 2)
+            System.out.println("Not Implemented");
          else System.exit(0);
       }
 

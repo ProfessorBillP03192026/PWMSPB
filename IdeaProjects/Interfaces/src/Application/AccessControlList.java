@@ -147,9 +147,6 @@ public class AccessControlList
       {
          e.printStackTrace();
       }
-
-
-
    }
 
    private void createNewFile()
@@ -275,8 +272,11 @@ public class AccessControlList
        String uName
    )
    {
-      for (String s : sList)
+      for (ACSRecord a : aList)
+      {
+         final String s = a.getUserName();
          if (s.equals(uName)) return true;
+      }
       return false;
    }
 
@@ -337,8 +337,7 @@ public class AccessControlList
       SubsystemRoles sr
    )
    {
-      final boolean b = find(uName, password, se, sr);
-      if (b) return;
+
       ACSRecord aR = new ACSRecord(uName, password, se, sr);
       try {
          fos = new FileOutputStream(ACSFile, true);

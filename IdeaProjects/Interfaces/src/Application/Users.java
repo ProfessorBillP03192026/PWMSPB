@@ -81,6 +81,13 @@ public class Users
          {
             System.out.println("Enter User Name");
             String un = sc.next();
+            final boolean b = acL.find(un);
+            if (b)
+            {
+               System.out.print(un);
+               System.out.println(" already exists");
+               return;
+            }
             System.out.println("Enter password");
             String pw = sc.next();
             System.out.println("Enter role");
@@ -88,6 +95,9 @@ public class Users
             SubsystemRoles sE = SubsystemRoles.valueOf(r);
             SubsystemEnums sN = getSubsys(sE);
             acL.addUser(un, pw, sN, sE);
+            System.out.print("User ");
+            System.out.print(un);
+            System.out.println(" Added");
             okay = true;
          }
          catch (Exception e)
@@ -99,7 +109,37 @@ public class Users
 
    private void deleteUser()
    {
-      System.out.println("Delete user called");
+
+      boolean okay = false;
+      do
+      {
+         try
+         {
+            System.out.println("Enter User Name or q(uit)");
+            String un = sc.next();
+            if (un.equals("q")) return;
+            final boolean b = acL.find(un);
+            if (b)
+            {
+               acL.deleteUser(un);
+               System.out.print("User ");
+               System.out.print(un);
+               System.out.println(" Deleted");
+               okay = true;
+            }
+            else
+            {
+               System.out.print("User ");
+               System.out.print(un);
+               System.out.println(" Not Found");
+            }
+
+         }
+         catch (Exception e)
+         {
+            e.printStackTrace();
+         }
+      } while (okay == false);
    }
 
    public void addOrDeleteUser()
@@ -111,7 +151,10 @@ public class Users
             addUser();
          else if (opt == 2)
             deleteUser();
-         else return;
+         else if (opt ==3)
+            return;
+         else
+            System.out.println("Invalid selection");
       }
 
    }
