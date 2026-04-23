@@ -7,9 +7,11 @@ import java.util.*;
 
 public class AccessControl
 {
+   private static AccessControlList acL;
 
    public static void main()
    {
+      acL = AccessControlList.Instance();
       AccessControl aC = new AccessControl();
       aC.manageACL();
    }
@@ -27,14 +29,24 @@ public class AccessControl
    public AccessControl()
    {
       sc = new Scanner(System.in);
+      authenticateSA();
       uS = new Users();
+   }
+
+   private void authenticateSA()
+   {
+      String sel;
+      String pw = acL.getSAPW();
+      do
+      {
+         System.out.println("Enter SA password");
+         sel = sc.next();
+      } while (pw.equals(sel) == false);
    }
 
    private int getUserSelection()
    {
-
       System.out.print(prompt);
-
       while (true)
       {
          try
@@ -52,9 +64,7 @@ public class AccessControl
             sc.nextLine();
             System.out.println
                   ("Invalid option, enter an integer");
-
          }
-
       }
       return sel;
    }

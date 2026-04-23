@@ -263,6 +263,13 @@ public class AccessControlList
       }
    }
 
+   public String getSAPW()
+   {
+      ACSRecord aR = aList.get(0);
+      String pw = aR.getPassword();
+      return pw;
+   }
+
    public boolean find
    (
        String uName

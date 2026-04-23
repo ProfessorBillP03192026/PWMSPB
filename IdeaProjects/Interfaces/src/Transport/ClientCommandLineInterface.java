@@ -104,7 +104,8 @@ public class ClientCommandLineInterface
        final String dest = rtv.getMyHostAddr();
        cs.setHostname(dest);
        
-        switch (sel) {
+        switch (sel)
+        {
             case 1:
                 cs.setV(0);
                 cs.mid = MessageID.AUTH;
